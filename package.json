@@ -8,9 +8,11 @@
   "scripts": {
     "dev": "DEBUG=app:* nodemon index",
     "start": "NODE_ENV=production node index",
-    "apikeys": "DEBUG=app:* node scripts/seedApiKeys.js"
+    "apikeys": "DEBUG=app:* node scripts/seedApiKeys.js",
+    "seedUsers": "DEBUG=app:* node scripts/seedUsers.js"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
