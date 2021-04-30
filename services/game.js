@@ -11,6 +11,11 @@ class CategoryService {
     return games;
   }
 
+  async searchGameByTitle(searchString) {
+    const games = await this.mongoDB.getAll(this.collection, { title: { $regex: `.*${searchString}.*`, $options: 'i' } });
+    return games;
+  }
+
   async createGames({ games }) {
     const createdGameId = await this.mongoDB.createMultiple(
       this.collection,

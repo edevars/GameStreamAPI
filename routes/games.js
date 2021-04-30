@@ -35,6 +35,22 @@ function GamesApi(app) {
             next(error)
         }
     })
+
+    router.get('/search', async function (req, res, next) {
+
+        const { contains } = req.query
+        const searchString = contains.toLowerCase()
+        try {
+            
+            const results = await gameService.searchGameByTitle(searchString)
+
+            res.status(200).json({
+                results
+            })
+        } catch (error) {
+            next(error)
+        }
+    })
 }
 
 module.exports = GamesApi
