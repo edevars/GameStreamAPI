@@ -91,14 +91,14 @@ function AuthApi(app) {
       const UPLOAD_FILE_SIZE_LIMIT = 150 * 1024 * 1024;
 
       if (avatar.size < UPLOAD_FILE_SIZE_LIMIT) {
-        console.log(config.accessToken)
         const dbx = new Dropbox({ accessToken: config.accessToken });
-        dbx.usersGetCurrentAccount()
+
+        dbx.filesUpload({ path: '/users/' + avatar.name, contents: avatar })
           .then(function (response) {
             res.send(response)
           })
           .catch(function (error) {
-            next(error)
+            next(error);
           });
       }
 
