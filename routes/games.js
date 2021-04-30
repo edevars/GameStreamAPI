@@ -23,6 +23,18 @@ function GamesApi(app) {
             next(error)
         }
     })
+
+    router.get('/', async function (req, res, next) {
+        try {
+            const games = await gameService.getGames()
+
+            res.status(200).json({
+                games
+            })
+        } catch (error) {
+            next(error)
+        }
+    })
 }
 
 module.exports = GamesApi
