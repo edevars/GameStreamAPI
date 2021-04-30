@@ -7,6 +7,10 @@ const game = joi.object({
     studio: joi.string().required(),
     contentRaiting: joi.string().required(),
     publicationYear: joi.number().min(1960).max(2022).required(),
+    videosUrls: joi.object({
+        mobile: joi.string().uri().required(),
+        tablet: joi.string().uri().required()
+    }).required(),
     description: joi.string().required(),
     platforms: joi.array().items(joi.string().required()).required(),
     tags: joi.array().items(joi.string().required()).required(),
