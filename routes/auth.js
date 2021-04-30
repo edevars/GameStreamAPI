@@ -14,6 +14,7 @@ const { createdUser } = require('../schemas/user');
 
 const { config } = require('../config');
 const { response } = require('express');
+const { use } = require('passport');
 
 //Basic strategy
 
@@ -51,11 +52,14 @@ function AuthApi(app) {
             next(boom.unauthorized());
           }
 
-          const { _id: id, name, email } = user;
+          const { _id: id, email } = user;
+
+          const registeredUser = await userService.getUser({ email })
+          
+          delete registeredUser.password
 
           const payload = {
             sub: id,
-            name,
             email,
             scopes: apiKey.scopes
           };
@@ -66,7 +70,7 @@ function AuthApi(app) {
 
           res.status(200).json({
             token,
-            user: { id, name, email }
+            user: registeredUser
           });
         });
       } catch (error) {
@@ -75,11 +79,7 @@ function AuthApi(app) {
     })(req, res, next);
   });
 
-  router.post('/sign-up', validationHandler(createdUser), async function (
-    req,
-    res,
-    next
-  ) {
+  router.post('/sign-up', async function (req, res, next) {
 
     const { body: user } = req;
     const { avatar } = req.files
@@ -89,18 +89,29 @@ function AuthApi(app) {
 
       if (userExists) {
         next(boom.forbidden("Try with another email"))
+      } else {
+        const completeUser = {
+          email: user.email,
+          password: user.password,
+          favorites: []
+        }
+
+        const createdUserId = await userService.createUser({ user: completeUser })
+
+        if (createdUser) {
+          const publicImageUrl = await uploadDropboxImage(req, res, next, avatar)
+          const userUpdated = await userService.updateUser({ id: createdUserId, data: { publicImageUrl } })
+          if (userUpdated) {
+            res.status(201).json({
+              id: createdUserId,
+              message: "User created succesfully"
+            })
+          }
+        } else {
+          next(boom.Boom("Something went wrong"))
+        }
+
       }
-
-      uploadDropboxImage(req, res, next, avatar)
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          next(error)
-        })
-
-
-
 
     } catch (error) {
       next(error);

@@ -7,14 +7,12 @@ const { config } = require('../config/index');
 const users = [
   {
     email: 'root@undefined.sh',
-    name: 'ROOT',
     password: config.defaultAdminPassword,
     urlProfile: '',
     favorites: []
   },
   {
     email: 'jhondoe@undefined.sh',
-    name: 'Jhon Doe',
     password: config.defaultUserPassword,
     urlProfile: '',
     favorites: []

@@ -24,6 +24,13 @@ class UserService {
     return createdUserId;
   }
 
+  async updateUser({ id, data }) {
+   
+    const updatedUser = await this.mongoDB.update(this.collection, id, data);
+
+    return updatedUser;
+  }
+
   async verifyUserExists({ email }) {
     const [user] = await this.mongoDB.getAll(this.collection, { email });
     return user;
