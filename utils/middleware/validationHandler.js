@@ -2,7 +2,7 @@ const boom = require('@hapi/boom');
 const joi = require('@hapi/joi');
 
 const validate = (data, schema) => {
-  const { error } = joi.object(schema).validate(data);
+  const { error } = schema.validate(data);
   return error;
 };
 

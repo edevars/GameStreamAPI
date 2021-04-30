@@ -13,8 +13,6 @@ const uploadDropboxImage = require('../utils/uploadDropboxImage');
 const { createdUser } = require('../schemas/user');
 
 const { config } = require('../config');
-const { response } = require('express');
-const { use } = require('passport');
 
 //Basic strategy
 
@@ -79,7 +77,7 @@ function AuthApi(app) {
     })(req, res, next);
   });
 
-  router.post('/sign-up', async function (req, res, next) {
+  router.post('/sign-up', validationHandler(createdUser), async function (req, res, next) {
 
     const { body: user } = req;
     const { avatar } = req.files
@@ -98,7 +96,7 @@ function AuthApi(app) {
 
         const createdUserId = await userService.createUser({ user: completeUser })
 
-        if (createdUser) {
+        if (createdUserId) {
           const publicImageUrl = await uploadDropboxImage(req, res, next, avatar)
           const userUpdated = await userService.updateUser({ id: createdUserId, data: { publicImageUrl } })
           if (userUpdated) {
