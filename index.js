@@ -6,12 +6,15 @@ const notFounHandler = require('./utils/middleware/notFounHandler');
 const cors = require("cors");
 
 
+
 const app = express();
 
 const { config } = require('./config/index');
 
 //Require routes
 const authApi = require('./routes/auth');
+const gamesApi = require('./routes/games');
+
 
 
 const {
@@ -34,6 +37,7 @@ app.use(morgan('combined'))
 
 //adding routes
 authApi(app)
+gamesApi(app)
 
 //catch error 404
 app.use(notFounHandler);
