@@ -12,6 +12,7 @@ const validationHandler = require('../utils/middleware/validationHandler');
 const { createdUser } = require('../schemas/user');
 
 const { config } = require('../config');
+const { hash } = require('bcrypt');
 
 //Basic strategy
 
@@ -93,13 +94,25 @@ function AuthApi(app) {
       if (avatar.size < UPLOAD_FILE_SIZE_LIMIT) {
         const dbx = new Dropbox({ accessToken: config.accessToken });
 
-        dbx.filesUpload({ path: '/users/' + avatar.name, contents: avatar })
-          .then(function (response) {
-            res.send(response)
-          })
-          .catch(function (error) {
-            next(error);
-          });
+        const { result: uploadedFile } = await dbx.filesUpload({ path: '/users/' + avatar.name, contents: avatar.data })
+
+        const { result: sharedLink } = await dbx.sharingCreateSharedLinkWithSettings({
+          path: uploadedFile.path_display, settings: {
+            requested_visibility: "public"
+          }
+        })
+
+        let hash = `${sharedLink.url}`
+        hash = hash.replace('https://www.dropbox.com/s/','')
+        hash = hash.replace('?dl=0','')
+        const prefix = 'https://dl.dropboxusercontent.com/s/'
+        const publicUrl = prefix + hash
+
+        res.send({
+          ...user,
+          url_profile: publicUrl,
+          favorites: []
+        })
       }
 
 
