@@ -2,21 +2,24 @@ const express = require('express');
 const passport = require('passport');
 const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
-const { Dropbox } = require('dropbox');
+
 
 const ApiKeysService = require('../services/apiKeys');
 const UsersServices = require('../services/users');
 const validationHandler = require('../utils/middleware/validationHandler');
+const uploadDropboxImage = require('../utils/uploadDropboxImage');
 
 
 const { createdUser } = require('../schemas/user');
 
 const { config } = require('../config');
-const { hash } = require('bcrypt');
+const { response } = require('express');
 
 //Basic strategy
 
 require('../utils/auth/basic');
+
+
 
 function AuthApi(app) {
   const router = express.Router();
@@ -88,32 +91,14 @@ function AuthApi(app) {
         next(boom.forbidden("Try with another email"))
       }
 
-      // Upload image
-      const UPLOAD_FILE_SIZE_LIMIT = 150 * 1024 * 1024;
-
-      if (avatar.size < UPLOAD_FILE_SIZE_LIMIT) {
-        const dbx = new Dropbox({ accessToken: config.accessToken });
-
-        const { result: uploadedFile } = await dbx.filesUpload({ path: '/users/' + avatar.name, contents: avatar.data })
-
-        const { result: sharedLink } = await dbx.sharingCreateSharedLinkWithSettings({
-          path: uploadedFile.path_display, settings: {
-            requested_visibility: "public"
-          }
+      uploadDropboxImage(req, res, next, avatar)
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          next(error)
         })
 
-        let hash = `${sharedLink.url}`
-        hash = hash.replace('https://www.dropbox.com/s/','')
-        hash = hash.replace('?dl=0','')
-        const prefix = 'https://dl.dropboxusercontent.com/s/'
-        const publicUrl = prefix + hash
-
-        res.send({
-          ...user,
-          url_profile: publicUrl,
-          favorites: []
-        })
-      }
 
 
 
