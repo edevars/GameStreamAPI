@@ -9,26 +9,28 @@ const users = [
     email: 'root@undefined.sh',
     name: 'ROOT',
     password: config.defaultAdminPassword,
-    phone: "5555215286",
-    isAdmin: true
+    urlProfile: '',
+    favorites: []
   },
   {
     email: 'jhondoe@undefined.sh',
     name: 'Jhon Doe',
-    phone: "5532456789",
-    password: config.defaultUserPassword
+    password: config.defaultUserPassword,
+    urlProfile: '',
+    favorites: []
   }
 ];
 
 async function createUser(mongoDB, user) {
-  const { name, email, password, isAdmin } = user;
+  const { name, email, password, urlProfile, favorites } = user;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const userId = await mongoDB.create('users', {
     name,
     email,
     password: hashedPassword,
-    isAdmin: Boolean(isAdmin)
+    urlProfile, 
+    favorites
   });
 
   return userId;
