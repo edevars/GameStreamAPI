@@ -1,22 +1,44 @@
-const { config } = require('./config')
-const express = require('express')
-const morgan = require('morgan')
-const cors = require('cors')
+const express = require('express');
+const morgan = require('morgan');
+const notFounHandler = require('./utils/middleware/notFounHandler');
+const cors = require("cors");
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(express.json())
+const { config } = require('./config/index');
+
+//Require routes
+const authApi = require('./routes/auth');
+
+
+const {
+  logErrors,
+  errorHandler,
+  wrapErrors
+} = require('./utils/middleware/errorHandler');
+
+//enabling cors
+app.use(cors());
+
+//body-parser
+app.use(express.json());
+
+//Loger to http requests
 app.use(morgan('combined'))
 
-app.get('/', function (req, res, next) {
-    res.status(200).json({
-        messaage: "Hola mundo"
-    })
-})
+//adding routes
+authApi(app)
+
+//catch error 404
+app.use(notFounHandler);
+
+//Error handling
+app.use(logErrors);
+app.use(wrapErrors);
+app.use(errorHandler);
+
 
 app.listen(config.port, () => {
-    const debug = require("debug")("app:server");
-    debug(`Listening http://localhost:${config.port}`);
-  });
-  
+  const debug = require("debug")("app:server");
+  debug(`Listening http://localhost:${config.port}`);
+});

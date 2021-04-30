@@ -8,6 +8,7 @@ const config = {
   dbName: process.env.DB_NAME,
   defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
   defaultUserPassword: process.env.DEFAULT_USER_PASSWORD,
+  authJwtSecret: process.env.AUTH_JWT_SECRET,
 };
 
 module.exports = { config };
