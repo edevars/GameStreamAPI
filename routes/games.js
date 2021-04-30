@@ -1,10 +1,6 @@
 const express = require('express');
-const passport = require('passport');
-const boom = require('@hapi/boom');
-
-
 const GameService = require('../services/game');
-const { createdGames, gameIdModel } = require('../schemas/game')
+const { createdGames } = require('../schemas/game')
 const validationHandler = require('../utils/middleware/validationHandler');
 
 
@@ -15,9 +11,17 @@ function GamesApi(app) {
     const gameService = new GameService()
 
     router.post('/', validationHandler(createdGames), async function (req, res, next) {
-        const { body } = req
-        
-        res.send(body)
+        const { body: games } = req
+
+        try {
+            const insertedIds = await gameService.createGames({ games })
+
+            res.status(201).json({
+                insertedIds
+            })
+        } catch (error) {
+            next(error)
+        }
     })
 }
 

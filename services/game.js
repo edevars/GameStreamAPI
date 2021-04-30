@@ -11,10 +11,10 @@ class CategoryService {
     return games;
   }
 
-  async createGame({ game }) {
-    const createdGameId = await this.mongoDB.create(
+  async createGames({ games }) {
+    const createdGameId = await this.mongoDB.createMultiple(
       this.collection,
-      game
+      games
     );
 
     return createdGameId;
