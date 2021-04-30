@@ -2,9 +2,12 @@ const express = require('express');
 const passport = require('passport');
 const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
+const { Dropbox } = require('dropbox');
+
 const ApiKeysService = require('../services/apiKeys');
 const UsersServices = require('../services/users');
 const validationHandler = require('../utils/middleware/validationHandler');
+
 
 const { createdUser } = require('../schemas/user');
 
@@ -21,19 +24,19 @@ function AuthApi(app) {
   const apiKeyService = new ApiKeysService();
   const userService = new UsersServices();
 
-  router.post('/sign-in', async function(req, res, next) {
+  router.post('/sign-in', async function (req, res, next) {
     const { apiKeyToken } = req.body;
     if (!apiKeyToken) {
       next(boom.unauthorized('apiKeyToken is required'));
     }
 
-    passport.authenticate('basic', function(error, user) {
+    passport.authenticate('basic', function (error, user) {
       try {
         if (error || !user) {
           next(boom.unauthorized());
         }
 
-        req.login(user, { session: false }, async function(error) {
+        req.login(user, { session: false }, async function (error) {
           if (error) {
             next(error);
           }
@@ -68,26 +71,39 @@ function AuthApi(app) {
     })(req, res, next);
   });
 
-  router.post('/sign-up', validationHandler(createdUser), async function(
+  router.post('/sign-up', validationHandler(createdUser), async function (
     req,
     res,
     next
   ) {
+
     const { body: user } = req;
+    const { avatar } = req.files
 
     try {
       const userExists = await userService.verifyUserExists(user);
 
       if (userExists) {
-        next(boom.conflict("User already exists"))
+        next(boom.forbidden("Try with another email"))
       }
 
-      const createdUserId = await userService.createUser({ user });
+      // Upload image
+      const UPLOAD_FILE_SIZE_LIMIT = 150 * 1024 * 1024;
 
-      res.status(201).json({
-        data: createdUserId,
-        message: 'user created'
-      });
+      if (avatar.size < UPLOAD_FILE_SIZE_LIMIT) {
+        console.log(config.accessToken)
+        const dbx = new Dropbox({ accessToken: config.accessToken });
+        dbx.usersGetCurrentAccount()
+          .then(function (response) {
+            res.send(response)
+          })
+          .catch(function (error) {
+            next(error)
+          });
+      }
+
+
+
     } catch (error) {
       next(error);
     }

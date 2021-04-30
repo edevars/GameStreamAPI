@@ -1,7 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
+
 const notFounHandler = require('./utils/middleware/notFounHandler');
 const cors = require("cors");
+
 
 const app = express();
 
@@ -16,6 +19,9 @@ const {
   errorHandler,
   wrapErrors
 } = require('./utils/middleware/errorHandler');
+
+
+app.use(fileUpload());
 
 //enabling cors
 app.use(cors());

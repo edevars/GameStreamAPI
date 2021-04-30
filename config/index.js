@@ -9,6 +9,7 @@ const config = {
   defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD,
   defaultUserPassword: process.env.DEFAULT_USER_PASSWORD,
   authJwtSecret: process.env.AUTH_JWT_SECRET,
+  accessToken: process.env.DROPBOX_ACCESS_TOKEN
 };
 
 module.exports = { config };
