@@ -1,4 +1,45 @@
-ul
-    each game in games
-        li
-            strong= game.title
+extends layout.pug
+
+block Hero
+    hero.hero.is-medium.is-primary 
+        .hero-body
+            .container
+                h1.title.is-1 GameStream API
+                h2.subtitle.is-2 An API to consume information about some videogames
+
+block content
+    section.section.mt-6
+        .columns
+            .container
+                .column
+                    h3.title Available games
+                    each game in games
+                        .box.game(style="margin-bottom: 100px;")
+                            .first-column
+                                p.title.is-4.mt-3= game.title
+                                p.subtitle.is-6= game.studio + " | " + game.publicationYear
+                                ul.tags
+                                        each tag in game.tags
+                                            li.tag= tag
+                                video(controls)
+                                    source(src=game.videosUrls.mobile type="video/webm")
+                                .notification.is-primary.mt-4
+                                    p.title.is-6.has-text-weight-bold Platforms
+                                    ul.tags
+                                        each platform in game.platforms
+                                            li.tag.is-primary.is-light= platform
+
+                            .content.mt-5.px-4
+                                p.title.is-5.has-text-weight-bold Description
+                                p= game.description
+                                p.title.is-5.has-text-weight-bold Image Gallery 
+                                .image-gallery.mb-6
+                                    each image in game.galleryImages
+                                        img(src= image)
+                                
+                    
+                    
+                    
+
+
+
