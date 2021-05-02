@@ -12,7 +12,6 @@ const strategyOptions = {
 
 const tokenHandler = async function (tokenPayload, cb) {
   const userService = new UsersServices();
-
   try {
     const user = await userService.getUser({ email: tokenPayload.email });
 

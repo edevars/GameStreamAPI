@@ -75,22 +75,22 @@ function AuthApi(app) {
             const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken });
 
             if (!apiKey) {
-              next(boom.unauthorized());
+              next(boom.unauthorized('API Key not found or is incorrect. Pleace check if you have a valid API token'));
+            } else {
+              const { _id: id, email, publicImageUrl } = user;
+
+              const payload = {
+                sub: id,
+                email,
+                scopes: apiKey.scopes
+              };
+
+              const token = jwt.sign(payload, config.authJwtSecret);
+
+              return res
+                .status(201)
+                .json({ token, user: { id, email, publicImageUrl } });
             }
-
-            const { _id: id, email, publicImageUrl } = user;
-
-            const payload = {
-              sub: id,
-              email,
-              scopes: apiKey.scopes
-            };
-
-            const token = jwt.sign(payload, config.authJwtSecret);
-
-            return res
-              .status(201)
-              .json({ token, user: { id, email, publicImageUrl } });
           });
         }
 
