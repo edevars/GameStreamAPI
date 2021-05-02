@@ -27,35 +27,35 @@ function AuthApi(app) {
   const apiKeyService = new ApiKeysService();
   const userService = new UsersServices();
 
-/**
- * @openapi
-* components:
- *   securitySchemes:
- *     BasicAuth:
- *       type: http
- *       scheme: basic
- * 
- * security:
- *   - BasicAuth: []
- * /api/auth/sign-in:
- *   post:
- *     description: Sign in endpoint
- *     requestBody:
- *        content:
- *          application/json:
- *               schema:
- *                type: object
- *                properties:
- *                  apiKeyToken:
- *                      type: string
- * 
- *     responses:
- *       201:
- *         description: Return the user and token after sign in
- * 
-
-
- */
+  /**
+   * @openapi
+  * components:
+   *   securitySchemes:
+   *     BasicAuth:
+   *       type: http
+   *       scheme: basic
+   * 
+   * security:
+   *   - BasicAuth: []
+   * /api/auth/sign-in:
+   *   post:
+   *     description: Sign in endpoint
+   *     requestBody:
+   *        content:
+   *          application/json:
+   *               schema:
+   *                type: object
+   *                properties:
+   *                  apiKeyToken:
+   *                      type: string
+   * 
+   *     responses:
+   *       201:
+   *         description: Return the user and token after sign in
+   * 
+  
+  
+   */
   router.post('/sign-in', async function (req, res, next) {
     const { apiKeyToken } = req.body;
     if (!apiKeyToken) {
@@ -65,68 +65,63 @@ function AuthApi(app) {
     passport.authenticate('basic', function (error, user) {
       try {
         if (error || !user) {
-          next(boom.unauthorized());
+          next(boom.unauthorized('User or password are incorrect'));
+        } else {
+          req.login(user, { session: false }, async function (error) {
+            if (error) {
+              next(error);
+            }
+
+            const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken });
+
+            if (!apiKey) {
+              next(boom.unauthorized());
+            }
+
+            const { _id: id, email, publicImageUrl } = user;
+
+            const payload = {
+              sub: id,
+              email,
+              scopes: apiKey.scopes
+            };
+
+            const token = jwt.sign(payload, config.authJwtSecret);
+
+            return res
+              .status(201)
+              .json({ token, user: { id, email, publicImageUrl } });
+          });
         }
 
-        req.login(user, { session: false }, async function (error) {
-          if (error) {
-            next(error);
-          }
 
-          const apiKey = await apiKeyService.getApiKey({ token: apiKeyToken });
-
-          if (!apiKey) {
-            next(boom.unauthorized());
-          }
-
-          const { _id: id, email } = user;
-
-          const registeredUser = await userService.getUser({ email })
-          
-          delete registeredUser.password
-
-          const payload = {
-            sub: id,
-            email,
-            scopes: apiKey.scopes
-          };
-
-          const token = jwt.sign(payload, config.authJwtSecret, {
-            expiresIn: '15'
-          });
-
-          res.status(201).json({
-            token,
-            user: registeredUser
-          });
-        });
       } catch (error) {
         next(error);
       }
     })(req, res, next);
   });
-/**
- * @openapi
- * /api/auth/sign-up:
- *   post:
- *     description: Sign in endpoint
- *     requestBody:
- *        content:
- *          multipart/form-data:
- *            schema:
- *              type: object
- *              properties:
- *                avatar:
- *                   type: string
- *                   format: binary
- *                email:
- *                   type: string
- *                password:
- *                   type: string
- *     responses:
- *       201:
- *         description: Return the message that user was created
- */
+  /**
+   * @openapi
+   * /api/auth/sign-up:
+   *   post:
+   *     description: Sign in endpoint
+   *     requestBody:
+   *        content:
+   *          multipart/form-data:
+   *            schema:
+   *              type: object
+   *              properties:
+   *                avatar:
+   *                   type: string
+   *                   format: binary
+   *                email:
+   *                   type: string
+   *                password:
+   *                   type: string
+   *     responses:
+   *       201:
+   *         description: Return the message that user was created
+   */
   router.post('/sign-up', validationHandler(createdUser), async function (req, res, next) {
 
     const { body: user } = req;
