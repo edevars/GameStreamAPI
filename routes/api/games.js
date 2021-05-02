@@ -3,8 +3,11 @@ const passport = require('passport');
 const { createdGames } = require('../../schemas/game')
 const GameService = require('../../services/game');
 const validationHandler = require('../../utils/middleware/validationHandler');
+const scopesValidationHandler = require('../../utils/middleware/scopesValidationHandler');
+
 
 require('../../utils/auth/jwt')
+
 
 function GamesApi(app) {
     const router = express.Router();
@@ -14,6 +17,7 @@ function GamesApi(app) {
 
     router.post('/',
         passport.authenticate('jwt', { session: false }),
+        scopesValidationHandler(['create:game']),
         validationHandler(createdGames),
         async function (req, res, next) {
             const { body: games } = req
@@ -40,6 +44,7 @@ function GamesApi(app) {
      */
     router.get('/',
         passport.authenticate('jwt', { session: false }),
+        scopesValidationHandler(['read:games']),
         async function (req, res, next) {
             try {
                 const games = await gameService.getGames()
@@ -70,6 +75,7 @@ function GamesApi(app) {
      */
     router.get('/search',
         passport.authenticate('jwt', { session: false }),
+        scopesValidationHandler(['search:games']),
         async function (req, res, next) {
 
             const { contains } = req.query
