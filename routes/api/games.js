@@ -32,7 +32,7 @@ function GamesApi(app) {
  *     description: Return an array of games
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: Returns an array of games.
  */
     router.get('/', async function (req, res, next) {
         try {
@@ -60,7 +60,7 @@ function GamesApi(app) {
  *          maximum: 1
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *         description: Return the search match by title.
  */
     router.get('/search', async function (req, res, next) {
 
