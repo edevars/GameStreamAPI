@@ -1,0 +1,29 @@
+.game {
+    width: 100%;
+    min-width: 320px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: minmax(320px, 480px) minmax(480px, 1fr);
+    column-gap: 2rem;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.has-gradient {
+    background-color: #00D1B2;
+    background-image: linear-gradient(45deg, #00D1B2 0%, #27add6 90%);
+}
+
+.has-gradient * {
+    color: white;
+}
+
+@media screen and (max-width: 720px) {
+    .game {
+        grid-template-columns: 1fr;
+    }
+}

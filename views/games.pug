@@ -1,11 +1,11 @@
 extends layout.pug
 
 block Hero
-    hero.hero.is-medium.is-primary 
+    hero.hero.is-medium.has-gradient
         .hero-body
             .container
-                h1.title.is-1 GameStream API
-                h2.subtitle.is-2 An API to consume information about some videogames
+                h1.title.is-1 Game Stream API
+                h2.subtitle.is-2 An API to consume information about videogames
 
 block content
     section.section.mt-6
@@ -23,8 +23,8 @@ block content
                                             li.tag= tag
                                 video(controls)
                                     source(src=game.videosUrls.mobile type="video/webm")
-                                .notification.is-primary.mt-4
-                                    p.title.is-6.has-text-weight-bold Platforms
+                                .notification.has-gradient.has-text-white.mt-4
+                                    p.title.is-5.has-text-weight-bold Platforms
                                     ul.tags
                                         each platform in game.platforms
                                             li.tag.is-primary.is-light= platform
