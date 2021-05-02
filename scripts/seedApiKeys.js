@@ -19,13 +19,8 @@ const adminScopes = [
 ];
 
 const publicScopes = [
-  'signin:auth',
-  'signup:auth',
-  
-  'read:game',
-
-  'read:comment',
-  'create:comment',
+  'read:games',
+  'search:games'
 ];
 
 const apiKeys = [
