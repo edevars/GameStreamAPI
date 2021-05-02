@@ -5,26 +5,27 @@ const boom = require('@hapi/boom');
 const UsersServices = require('../../services/users');
 const { config } = require('../../config');
 
-passport.use(
-  new Strategy({
-    secretOrKey: config.authJwtSecret,
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
-  }),
-  async function(tokenPayload, cb) {
-    const userService = new UsersServices();
+const strategyOptions = {
+  secretOrKey: config.authJwtSecret,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+}
 
-    try {
-      const user = await userService.getUser({ email: tokenPayload.email });
+const tokenHandler = async function (tokenPayload, cb) {
+  const userService = new UsersServices();
 
-      if (!user) {
-        return cb(boom.unauthorized(), false);
-      }
+  try {
+    const user = await userService.getUser({ email: tokenPayload.email });
 
-      delete user.password;
-
-      cb(null, { ...user, scopes: tokenPayload.scopes });
-    } catch (error) {
-      return cb(error);
+    if (!user) {
+      return cb(boom.unauthorized(), false);
     }
+
+    delete user.password;
+
+    cb(null, { ...user, scopes: tokenPayload.scopes });
+  } catch (error) {
+    return cb(error);
   }
-);
+}
+
+passport.use(new Strategy(strategyOptions, tokenHandler));
