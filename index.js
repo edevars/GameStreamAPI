@@ -15,9 +15,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 const { config } = require('./config/index');
 
 //Require routes
-const authApi = require('./routes/auth');
-const gamesApi = require('./routes/games');
+const authApi = require('./routes/api/auth');
+const gamesApi = require('./routes/api/games');
 const gamesRender = require('./routes/render/games')
+const apiDocs = require('./routes/render/api-docs');
 
 
 const {
@@ -44,6 +45,7 @@ gamesApi(app)
 
 // Application
 gamesRender(app)
+apiDocs(app)
 
 //catch error 404
 app.use(notFounHandler);

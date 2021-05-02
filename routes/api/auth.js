@@ -4,19 +4,19 @@ const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
 
 
-const ApiKeysService = require('../services/apiKeys');
-const UsersServices = require('../services/users');
-const validationHandler = require('../utils/middleware/validationHandler');
-const uploadDropboxImage = require('../utils/uploadDropboxImage');
+const ApiKeysService = require('../../services/apiKeys');
+const UsersServices = require('../../services/users');
+const validationHandler = require('../../utils/middleware/validationHandler');
+const uploadDropboxImage = require('../../utils/uploadDropboxImage');
 
 
-const { createdUser } = require('../schemas/user');
+const { createdUser } = require('../../schemas/user');
 
-const { config } = require('../config');
+const { config } = require('../../config');
 
 //Basic strategy
 
-require('../utils/auth/basic');
+require('../../utils/auth/basic');
 
 
 
