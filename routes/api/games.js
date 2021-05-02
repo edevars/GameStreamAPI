@@ -1,9 +1,10 @@
 const express = require('express');
+const passport = require('passport');
 const { createdGames } = require('../../schemas/game')
 const GameService = require('../../services/game');
 const validationHandler = require('../../utils/middleware/validationHandler');
 
-
+require('../../utils/auth/jwt')
 
 function GamesApi(app) {
     const router = express.Router();
@@ -11,72 +12,79 @@ function GamesApi(app) {
 
     const gameService = new GameService()
 
-    router.post('/', validationHandler(createdGames), async function (req, res, next) {
-        const { body: games } = req
+    router.post('/',
+        passport.authenticate('jwt', { session: false }),
+        validationHandler(createdGames),
+        async function (req, res, next) {
+            const { body: games } = req
 
-        try {
-            const insertedIds = await gameService.createGames({ games })
+            try {
+                const insertedIds = await gameService.createGames({ games })
 
-            res.status(201).json({
-                insertedIds
-            })
-        } catch (error) {
-            next(error)
-        }
-    })
+                res.status(201).json({
+                    insertedIds
+                })
+            } catch (error) {
+                next(error)
+            }
+        })
 
-/**
- * @openapi
- * /api/games:
- *   get:
- *     description: Return an array of games
- *     responses:
- *       200:
- *         description: Returns an array of games.
- */
-    router.get('/', async function (req, res, next) {
-        try {
-            const games = await gameService.getGames()
+    /**
+     * @openapi
+     * /api/games:
+     *   get:
+     *     description: Return an array of games
+     *     responses:
+     *       200:
+     *         description: Returns an array of games.
+     */
+    router.get('/',
+        passport.authenticate('jwt', { session: false }),
+        async function (req, res, next) {
+            try {
+                const games = await gameService.getGames()
 
-            res.status(200).json({
-                games
-            })
-        } catch (error) {
-            next(error)
-        }
-    })
+                res.status(200).json({
+                    games
+                })
+            } catch (error) {
+                next(error)
+            }
+        })
 
-/**
- * @openapi
- * /api/games/search?contains=:
- *   get:
- *     description: Return an array of games searched by title
- *     parameters:
- *      - name: termOfSearch
- *        in: string
- *        description: The term of search by title
- *        schema:
- *          type: string
- *          maximum: 1
- *     responses:
- *       200:
- *         description: Return the search match by title.
- */
-    router.get('/search', async function (req, res, next) {
+    /**
+     * @openapi
+     * /api/games/search?contains=:
+     *   get:
+     *     description: Return an array of games searched by title
+     *     parameters:
+     *      - name: termOfSearch
+     *        in: string
+     *        description: The term of search by title
+     *        schema:
+     *          type: string
+     *          maximum: 1
+     *     responses:
+     *       200:
+     *         description: Return the search match by title.
+     */
+    router.get('/search',
+        passport.authenticate('jwt', { session: false }),
+        async function (req, res, next) {
 
-        const { contains } = req.query
-        const searchString = contains.toLowerCase()
-        try {
+            const { contains } = req.query
+            const searchString = contains.toLowerCase()
+            try {
 
-            const results = await gameService.searchGameByTitle(searchString)
+                const results = await gameService.searchGameByTitle(searchString)
 
-            res.status(200).json({
-                results
-            })
-        } catch (error) {
-            next(error)
-        }
-    })
+                res.status(200).json({
+                    results
+                })
+            } catch (error) {
+                next(error)
+            }
+        })
 }
 
 module.exports = GamesApi
