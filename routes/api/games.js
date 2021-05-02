@@ -4,7 +4,7 @@ const { createdGames } = require('../../schemas/game')
 const GameService = require('../../services/game');
 const validationHandler = require('../../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../../utils/middleware/scopesValidationHandler');
-
+const protectRoutes = require('../../utils/middleware/protectRoutes');
 
 require('../../utils/auth/jwt')
 
@@ -12,11 +12,11 @@ require('../../utils/auth/jwt')
 function GamesApi(app) {
     const router = express.Router();
     app.use('/api/games', router);
+    router.use(protectRoutes)
 
     const gameService = new GameService()
 
     router.post('/',
-        passport.authenticate('jwt', { session: false }),
         scopesValidationHandler(['create:game']),
         validationHandler(createdGames),
         async function (req, res, next) {
@@ -43,7 +43,6 @@ function GamesApi(app) {
      *         description: Returns an array of games.
      */
     router.get('/',
-        passport.authenticate('jwt', { session: false }),
         scopesValidationHandler(['read:games']),
         async function (req, res, next) {
             try {
@@ -74,7 +73,6 @@ function GamesApi(app) {
      *         description: Return the search match by title.
      */
     router.get('/search',
-        passport.authenticate('jwt', { session: false }),
         scopesValidationHandler(['search:games']),
         async function (req, res, next) {
 

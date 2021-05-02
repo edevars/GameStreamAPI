@@ -17,11 +17,13 @@ const tokenHandler = async function (tokenPayload, cb) {
 
     if (!user) {
       return cb(boom.unauthorized(), false);
+    } else {
+      delete user.password;
+
+      cb(null, { ...user, scopes: tokenPayload.scopes });
     }
 
-    delete user.password;
 
-    cb(null, { ...user, scopes: tokenPayload.scopes });
   } catch (error) {
     return cb(error);
   }
