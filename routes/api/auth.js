@@ -27,35 +27,7 @@ function AuthApi(app) {
   const apiKeyService = new ApiKeysService();
   const userService = new UsersServices();
 
-  /**
-   * @openapi
-  * components:
-   *   securitySchemes:
-   *     BasicAuth:
-   *       type: http
-   *       scheme: basic
-   * 
-   * security:
-   *   - BasicAuth: []
-   * /api/auth/sign-in:
-   *   post:
-   *     description: Sign in endpoint
-   *     requestBody:
-   *        content:
-   *          application/json:
-   *               schema:
-   *                type: object
-   *                properties:
-   *                  apiKeyToken:
-   *                      type: string
-   * 
-   *     responses:
-   *       201:
-   *         description: Return the user and token after sign in
-   * 
-  
-  
-   */
+
   router.post('/sign-in', async function (req, res, next) {
     const { apiKeyToken } = req.body;
     if (!apiKeyToken) {
@@ -100,28 +72,7 @@ function AuthApi(app) {
       }
     })(req, res, next);
   });
-  /**
-   * @openapi
-   * /api/auth/sign-up:
-   *   post:
-   *     description: Sign in endpoint
-   *     requestBody:
-   *        content:
-   *          multipart/form-data:
-   *            schema:
-   *              type: object
-   *              properties:
-   *                avatar:
-   *                   type: string
-   *                   format: binary
-   *                email:
-   *                   type: string
-   *                password:
-   *                   type: string
-   *     responses:
-   *       201:
-   *         description: Return the message that user was created
-   */
+  
   router.post('/sign-up', validationHandler(createdUser), async function (req, res, next) {
 
     const { body: user } = req;

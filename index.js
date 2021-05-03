@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 const { config } = require('./config/index');
 
 //Require routes
-const authApi = require('./routes/api/auth');
 const gamesApi = require('./routes/api/games');
 const gamesRender = require('./routes/render/games')
 const apiDocs = require('./routes/render/api-docs');
@@ -40,7 +39,6 @@ app.use(express.json());
 app.use(morgan('combined'))
 
 //adding routes
-authApi(app)
 gamesApi(app)
 
 // Application
