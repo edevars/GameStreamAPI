@@ -55,16 +55,14 @@ function GamesApi(app) {
 
     /**
      * @openapi
-     * /api/games/search?contains=:
+     * /api/games/search:
      *   get:
      *     description: Return an array of games searched by title
      *     parameters:
-     *      - name: termOfSearch
-     *        in: string
-     *        description: The term of search by title
-     *        schema:
+     *       - in: query
+     *         name: contains
+     *         schema:
      *          type: string
-     *          maximum: 1
      *     responses:
      *       200:
      *         description: Return the search match by title.
