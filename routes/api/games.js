@@ -4,7 +4,6 @@ const { createdGames } = require('../../schemas/game')
 const GameService = require('../../services/game');
 const validationHandler = require('../../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../../utils/middleware/scopesValidationHandler');
-const protectRoutes = require('../../utils/middleware/protectRoutes');
 
 require('../../utils/auth/jwt')
 
@@ -12,7 +11,6 @@ require('../../utils/auth/jwt')
 function GamesApi(app) {
     const router = express.Router();
     app.use('/api/games', router);
-    router.use(protectRoutes)
 
     const gameService = new GameService()
 
@@ -43,7 +41,6 @@ function GamesApi(app) {
      *         description: Returns an array of games.
      */
     router.get('/',
-        scopesValidationHandler(['read:games']),
         async function (req, res, next) {
             try {
                 const games = await gameService.getGames()
@@ -58,22 +55,19 @@ function GamesApi(app) {
 
     /**
      * @openapi
-     * /api/games/search?contains=:
+     * /api/games/search:
      *   get:
      *     description: Return an array of games searched by title
      *     parameters:
-     *      - name: termOfSearch
-     *        in: string
-     *        description: The term of search by title
-     *        schema:
+     *       - in: query
+     *         name: contains
+     *         schema:
      *          type: string
-     *          maximum: 1
      *     responses:
      *       200:
      *         description: Return the search match by title.
      */
     router.get('/search',
-        scopesValidationHandler(['search:games']),
         async function (req, res, next) {
 
             const { contains } = req.query
