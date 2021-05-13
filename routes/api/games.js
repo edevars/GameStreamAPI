@@ -5,7 +5,9 @@ const GameService = require('../../services/game');
 const validationHandler = require('../../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../../utils/middleware/scopesValidationHandler');
 
+
 require('../../utils/auth/jwt')
+const gamesMocked = require('../../utils/data/games');
 
 
 function GamesApi(app) {
@@ -13,23 +15,6 @@ function GamesApi(app) {
     app.use('/api/games', router);
 
     const gameService = new GameService()
-
-    router.post('/',
-        scopesValidationHandler(['create:game']),
-        validationHandler(createdGames),
-        async function (req, res, next) {
-            const { body: games } = req
-
-            try {
-                const insertedIds = await gameService.createGames({ games })
-
-                res.status(201).json({
-                    insertedIds
-                })
-            } catch (error) {
-                next(error)
-            }
-        })
 
     /**
      * @openapi
@@ -41,13 +26,9 @@ function GamesApi(app) {
      *         description: Returns an array of games.
      */
     router.get('/',
-        async function (req, res, next) {
+        function (req, res, next) {
             try {
-                const games = await gameService.getGames()
-
-                res.status(200).json({
-                    games
-                })
+                res.status(200).json(gamesMocked)
             } catch (error) {
                 next(error)
             }
@@ -74,7 +55,7 @@ function GamesApi(app) {
             const searchString = contains.toLowerCase()
             try {
 
-                const results = await gameService.searchGameByTitle(searchString)
+                const results = gamesMocked.filter(game => game.title.toLowerCase().includes(searchString) === true)
 
                 res.status(200).json({
                     results
