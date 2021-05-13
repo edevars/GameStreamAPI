@@ -127,8 +127,8 @@
             "RPG"
         ],
         "videosUrls": {
-            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480_vp9.mp4",
-            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie_max_vp9.mp4"
+            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4",
+            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie_max.mp4"
         },
         "galleryImages": [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.600x338.jpg",
@@ -179,8 +179,8 @@
             "Story Rich"
         ],
         "videosUrls": {
-            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480_vp9.mp4",
-            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie_max_vp9.mp4"
+            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4",
+            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie_max.mp4"
         },
         "galleryImages": [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_ac7c64c8d10bb5786694891e4a22b07a5da7dd6f.600x338.jpg",
@@ -204,8 +204,8 @@
             "Multiplayer"
         ],
         "videosUrls": {
-            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie480_vp9.mp4",
-            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie_max_vp9.mp4"
+            "mobile": "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie480.mp4",
+            "tablet": "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie_max.mp4"
         },
         "galleryImages": [
            "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_62bbd86f4735893ef6cd53206cf8c93f87eb86ec.600x338.jpg?t=1617821242",
