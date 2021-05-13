@@ -1,3 +1,218 @@
-const games = [{ title: "The Witcher 3: Wild Hunt", studio: "CD Project Red", contentRaiting: "M", publicationYear: "2015", description: "As war rages on throughout the Northern Realms, you take on the greatest contract of your life — tracking down the Child of Prophecy, a living weapon that can alter the shape of the world.", platforms: ["PC", "Playstation 4", "Xbox One"], tags: ["RPG", "Action", "Open World"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie_max.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_107600c1337accc09104f7a8aa7f275f23cad096.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_ed23139c916fdb9f6dd23b2a6a01d0fbd2dd1a4f.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_908485cbb1401b1ebf42e3d21a860ddc53517b08.600x338.jpg"] }, { title: "Grand Theft Auto V", studio: "Rockstar Games", contentRaiting: "M", publicationYear: "2015", description: "Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second. ", platforms: ["PC", "Playstation 4", "Xbox One", "Xbox 360", "PS3"], tags: ["Multiplayer", "Action", "Open World"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie_max.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_bab596ea9a6924055cd8c097bba75f052c18025d.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_4627498ce6ec1516512468eecfb9f90b7fdf438b.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_6b3e35dfc1acf5a742998fcd21690b5cddc367df.600x338.jpg"] }, { title: "Crash Bandicoot™ N. Sane Trilogy", studio: "Activision", contentRaiting: "E", publicationYear: "2018", description: "Your favorite marsupial, Crash Bandicoot™, is back! He’s enhanced, entranced and ready-to-dance with the N. Sane Trilogy. Relive all your favorite moments in Crash Bandicoot™, Crash Bandicoot™ 2: Cortex Strikes Back and Crash Bandicoot™ 3: Warped, now in fully-remastered graphical glory!", platforms: ["PC", "Playstation 4", "Xbox One"], tags: ["3D Platfoormer", "Remake", "Classic", "Adventure"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie_max.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_fad459eb04408dd926de3b789c8bc6d13bf855c0.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_931f13ad19753ac5d491bc55e31ec9e2181ca637.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_c2439741a40a81e4772412b4a92866aa1f188f2f.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_1a5bd0956c774afcadb1474f5fed2085715f2987.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_bf301672eede469605ef823057cba1eb3b845f12.600x338.jpg"] }, { title: "Cuphead", studio: "Studio MDHR", contentRaiting: "E", publicationYear: "2017", description: "Cuphead is a classic run and gun action game heavily focused on boss battles. Inspired by cartoons of the 1930s, the visuals and audio are painstakingly created with the same techniques of the era, i.e. traditional hand drawn cel animation, watercolor backgrounds, and original jazz recordings.", platforms: ["PC", "Playstation 4", "Xbox One", "Nintendo Switch", "macOs"], tags: ["Platfoormer", "Difficult", "Cartoon"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie_max.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_483fb089be0093beeef03525276803a9ca4f66a1.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_48477e4a865827aa0be6a44f00944d8d2a3e5eb9.600x338.jpg"] }, { title: "Hades", studio: "Supergiant Games", contentRaiting: "T", publicationYear: "2020", description: "Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.", platforms: ["PC", "Nintendo Switch", "macOs"], tags: ["Action", "Indie", "RPG"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480_vp9.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie_max_vp9.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_217b70678a2eea71a974fba1a4cd8baa660581bb.600x338.jpg"] }, { title: "Abzu", studio: "Giant Squid", contentRaiting: "E", publicationYear: "2016", description: "From the art director of Journey®, ABZÛ is a beautiful underwater adventure that evokes the dream of diving. Immerse yourself in a vibrant hidden world bursting with color and life as you descend into the heart of the ocean. But beware as you swim deeper as dangers lurk in the depths.", platforms: ["PC", "Nintendo Switch", "Playstation 4", "Xbox One"], tags: ["Relaxing", "Atmospheric", "Underwater"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie_max.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_b1038245a188f63c24a8112b7a36311e3d851935.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_9ad3c0fba255bf54bbe4c6db2aa96a0d8acca892.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_d47acc2f4600310d41d966a55752948692891eaa.600x338.jpg"] }, { title: "DEATH STRANDING", studio: "KOJIMA PRODUCTIONS", contentRaiting: "M", publicationYear: "2020", description: "From legendary game creator Hideo Kojima comes an all-new, genre-defying experience. Sam Bridges must brave a world utterly transformed by the Death Stranding. Carrying the disconnected remnants of our future in his hands, he embarks on a journey to reconnect the shattered world one step at a time.", platforms: ["PC", "Playstation 4"], tags: ["Walking Simulator", "Open World", "Story Rich"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480_vp9.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie_max_vp9.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_ac7c64c8d10bb5786694891e4a22b07a5da7dd6f.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_a844f976c086d72f91de4a30a38c80e781988653.600x338.jpg", "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_5c87140a20603a3c642d149ddb429331249a2810.600x338.jpg"] }, { title: "Halo: The Master Chief Collection", studio: "Xbox Game Studios", contentRaiting: "M", publicationYear: "2019", description: "The Master Chief’s iconic journey includes six games, built for PC and collected in a single integrated experience. Whether you’re a long-time fan or meeting Spartan 117 for the first time, The Master Chief Collection is the definitive Halo gaming experience.", platforms: ["PC", "Xbox One"], tags: ["FPS", "Classic", "Multiplayer"], videosUrls: { mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie480_vp9.mp4", tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie_max_vp9.mp4" }, galleryImages: ["https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_62bbd86f4735893ef6cd53206cf8c93f87eb86ec.600x338.jpg?t=1617821242", "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_fdaf8ebd7f3c62e08398f39c9bfa486294ea5a0a.600x338.jpg?t=1617821242", "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_24bfdbf8483862d9e6f1d2b114a2412e47a41d68.600x338.jpg?t=1617821242"] }]
+const games = [
+    {
+        title: "The Witcher 3: Wild Hunt",
+        studio: "CD Project Red",
+        contentRaiting: "M",
+        publicationYear: "2015",
+        description: "As war rages on throughout the Northern Realms, you take on the greatest contract of your life — tracking down the Child of Prophecy, a living weapon that can alter the shape of the world.",
+        platforms: [
+            "PC",
+            "Playstation 4",
+            "Xbox One"
+        ],
+        tags: [
+            "RPG",
+            "Action",
+            "Open World"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_107600c1337accc09104f7a8aa7f275f23cad096.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_ed23139c916fdb9f6dd23b2a6a01d0fbd2dd1a4f.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_908485cbb1401b1ebf42e3d21a860ddc53517b08.600x338.jpg"
+        ]
+    },
+    {
+        title: "Grand Theft Auto V",
+        studio: "Rockstar Games",
+        contentRaiting: "M",
+        publicationYear: "2015",
+        description: "Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second. ",
+        platforms: [
+            "PC",
+            "Playstation 4",
+            "Xbox One",
+            "Xbox 360",
+            "PS3"
+        ],
+        tags: [
+            "Multiplayer",
+            "Action",
+            "Open World"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_bab596ea9a6924055cd8c097bba75f052c18025d.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_4627498ce6ec1516512468eecfb9f90b7fdf438b.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_6b3e35dfc1acf5a742998fcd21690b5cddc367df.600x338.jpg"
+        ]
+    },
+    {
+        title: "Crash Bandicoot™ N. Sane Trilogy",
+        studio: "Activision",
+        contentRaiting: "E",
+        publicationYear: "2018",
+        description: "Your favorite marsupial, Crash Bandicoot™, is back! He’s enhanced, entranced and ready-to-dance with the N. Sane Trilogy. Relive all your favorite moments in Crash Bandicoot™, Crash Bandicoot™ 2: Cortex Strikes Back and Crash Bandicoot™ 3: Warped, now in fully-remastered graphical glory!",
+        platforms: [
+            "PC",
+            "Playstation 4",
+            "Xbox One"
+        ],
+        tags: [
+            "3D Platfoormer",
+            "Remake",
+            "Classic",
+            "Adventure"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_fad459eb04408dd926de3b789c8bc6d13bf855c0.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_931f13ad19753ac5d491bc55e31ec9e2181ca637.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_c2439741a40a81e4772412b4a92866aa1f188f2f.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_1a5bd0956c774afcadb1474f5fed2085715f2987.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_bf301672eede469605ef823057cba1eb3b845f12.600x338.jpg"
+        ]
+    },
+    {
+        title: "Cuphead",
+        studio: "Studio MDHR",
+        contentRaiting: "E",
+        publicationYear: "2017",
+        description: "Cuphead is a classic run and gun action game heavily focused on boss battles. Inspired by cartoons of the 1930s, the visuals and audio are painstakingly created with the same techniques of the era, i.e. traditional hand drawn cel animation, watercolor backgrounds, and original jazz recordings.",
+        platforms: [
+            "PC",
+            "Playstation 4",
+            "Xbox One",
+            "Nintendo Switch",
+            "macOs"
+        ],
+        tags: [
+            "Platfoormer",
+            "Difficult",
+            "Cartoon"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_483fb089be0093beeef03525276803a9ca4f66a1.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_48477e4a865827aa0be6a44f00944d8d2a3e5eb9.600x338.jpg"
+        ]
+    },
+    {
+        title: "Hades",
+        studio: "Supergiant Games",
+        contentRaiting: "T",
+        publicationYear: "2020",
+        description: "Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.",
+        platforms: [
+            "PC",
+            "Nintendo Switch",
+            "macOs"
+        ],
+        tags: [
+            "Action",
+            "Indie",
+            "RPG"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_8a9f0953e8a014bd3df2789c2835cb787cd3764d.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_217b70678a2eea71a974fba1a4cd8baa660581bb.600x338.jpg"
+        ]
+    },
+    {
+        title: "Abzu",
+        studio: "Giant Squid",
+        contentRaiting: "E",
+        publicationYear: "2016",
+        description: "From the art director of Journey®, ABZÛ is a beautiful underwater adventure that evokes the dream of diving. Immerse yourself in a vibrant hidden world bursting with color and life as you descend into the heart of the ocean. But beware as you swim deeper as dangers lurk in the depths.",
+        platforms: [
+            "PC",
+            "Nintendo Switch",
+            "Playstation 4",
+            "Xbox One"
+        ],
+        tags: [
+            "Relaxing",
+            "Atmospheric",
+            "Underwater"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_b1038245a188f63c24a8112b7a36311e3d851935.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_9ad3c0fba255bf54bbe4c6db2aa96a0d8acca892.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_d47acc2f4600310d41d966a55752948692891eaa.600x338.jpg"
+        ]
+    },
+    {
+        title: "DEATH STRANDING",
+        studio: "KOJIMA PRODUCTIONS",
+        contentRaiting: "M",
+        publicationYear: "2020",
+        description: "From legendary game creator Hideo Kojima comes an all-new, genre-defying experience. Sam Bridges must brave a world utterly transformed by the Death Stranding. Carrying the disconnected remnants of our future in his hands, he embarks on a journey to reconnect the shattered world one step at a time.",
+        platforms: [
+            "PC",
+            "Playstation 4"
+        ],
+        tags: [
+            "Walking Simulator",
+            "Open World",
+            "Story Rich"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_ac7c64c8d10bb5786694891e4a22b07a5da7dd6f.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_a844f976c086d72f91de4a30a38c80e781988653.600x338.jpg",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_5c87140a20603a3c642d149ddb429331249a2810.600x338.jpg"
+        ]
+    },
+    {
+        title: "Halo: The Master Chief Collection",
+        studio: "Xbox Game Studios",
+        contentRaiting: "M",
+        publicationYear: "2019",
+        description: "The Master Chief’s iconic journey includes six games, built for PC and collected in a single integrated experience. Whether you’re a long-time fan or meeting Spartan 117 for the first time, The Master Chief Collection is the definitive Halo gaming experience.",
+        platforms: [
+            "PC",
+            "Xbox One"
+        ],
+        tags: [
+            "FPS",
+            "Classic",
+            "Multiplayer"
+        ],
+        videosUrls: {
+            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie480.mp4",
+            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie_max.mp4"
+        },
+        galleryImages: [
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_62bbd86f4735893ef6cd53206cf8c93f87eb86ec.600x338.jpg?t=1617821242",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_fdaf8ebd7f3c62e08398f39c9bfa486294ea5a0a.600x338.jpg?t=1617821242",
+            "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_24bfdbf8483862d9e6f1d2b114a2412e47a41d68.600x338.jpg?t=1617821242"
+        ]
+    }
+]
 
 module.exports = games
