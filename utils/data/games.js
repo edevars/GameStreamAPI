@@ -16,8 +16,8 @@ const games = [
             "Open World"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/k6g0zwmsxt9qery/TheWitcher480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/9faic5dtebavp1o/TheWitcherMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_107600c1337accc09104f7a8aa7f275f23cad096.600x338.jpg",
@@ -44,8 +44,8 @@ const games = [
             "Open World"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/klvhbfl20qp5dej/GTA480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/66x1qk3bqua5tf4/GTAMax.mp4?dl=0"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_bab596ea9a6924055cd8c097bba75f052c18025d.600x338.jpg",
@@ -71,8 +71,8 @@ const games = [
             "Adventure"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/qb9dnqbnurufm39/Crash480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/0kgiunw315uc72s/CrashMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/731490/ss_fad459eb04408dd926de3b789c8bc6d13bf855c0.600x338.jpg",
@@ -101,8 +101,8 @@ const games = [
             "Cartoon"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/7167kppqrp1l72s/Cuphead480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/x08o6ihojmwpqjm/CupheadMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/268910/ss_615455299355eaf552c638c7ea5b24a8b46e02dd.600x338.jpg",
@@ -127,8 +127,8 @@ const games = [
             "RPG"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/8p42umyiqoku18r/Hades480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/5juhj8blz131wdq/HadesMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_c0fed447426b69981cf1721756acf75369801b31.600x338.jpg",
@@ -154,8 +154,8 @@ const games = [
             "Underwater"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/vojqso0c5ise1bh/Abzu480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/uvlf45gkf2mdyfr/AbzuMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/384190/ss_b1038245a188f63c24a8112b7a36311e3d851935.600x338.jpg",
@@ -179,8 +179,8 @@ const games = [
             "Story Rich"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/srbemusdsru4nm1/DeathStranding480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/m75puxd0hu71nsf/DeathStrandingMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/ss_ac7c64c8d10bb5786694891e4a22b07a5da7dd6f.600x338.jpg",
@@ -204,8 +204,8 @@ const games = [
             "Multiplayer"
         ],
         videosUrls: {
-            mobile: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie480.mp4",
-            tablet: "https://cdn.cloudflare.steamstatic.com/steam/apps/256828981/movie_max.mp4"
+            mobile: "https://dl.dropboxusercontent.com/s/fwa3k95ga2kx849/Halo480.mp4",
+            tablet: "https://dl.dropboxusercontent.com/s/l5m0opy4w1rcz1u/HaloMax.mp4"
         },
         galleryImages: [
             "https://cdn.cloudflare.steamstatic.com/steam/apps/976730/ss_62bbd86f4735893ef6cd53206cf8c93f87eb86ec.600x338.jpg?t=1617821242",
