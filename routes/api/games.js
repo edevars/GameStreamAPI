@@ -1,20 +1,10 @@
 const express = require('express');
-const passport = require('passport');
-const { createdGames } = require('../../schemas/game')
-const GameService = require('../../services/game');
-const validationHandler = require('../../utils/middleware/validationHandler');
-const scopesValidationHandler = require('../../utils/middleware/scopesValidationHandler');
-
-
-require('../../utils/auth/jwt')
 const gamesMocked = require('../../utils/data/games');
 
 
 function GamesApi(app) {
     const router = express.Router();
     app.use('/api/games', router);
-
-    const gameService = new GameService()
 
     /**
      * @openapi

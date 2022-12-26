@@ -1,18 +1,10 @@
 const express = require('express');
-const morgan = require('morgan');
-const fileUpload = require('express-fileupload');
 const path = require('path');
-
-
-const notFounHandler = require('./utils/middleware/notFounHandler');
 const cors = require("cors");
-
-
+const helmet = require("helmet");
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-
-const { config } = require('./config/index');
 
 //Require routes
 const gamesApi = require('./routes/api/games');
@@ -20,23 +12,17 @@ const gamesRender = require('./routes/render/games')
 const apiDocs = require('./routes/render/api-docs');
 
 
-const {
-  logErrors,
-  errorHandler,
-  wrapErrors
-} = require('./utils/middleware/errorHandler');
-
-//To upload files
-app.use(fileUpload());
-
 //enabling cors
 app.use(cors());
 
+//Securing app
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginEmbedderPolicy: false,
+}))
+
 //body-parser
 app.use(express.json());
-
-//Loger to http requests
-app.use(morgan('combined'))
 
 //adding routes
 gamesApi(app)
@@ -45,21 +31,14 @@ gamesApi(app)
 gamesRender(app)
 apiDocs(app)
 
-//catch error 404
-app.use(notFounHandler);
-
-//Error handling
-app.use(logErrors);
-app.use(wrapErrors);
-app.use(errorHandler);
-
 //set views
 app.set("views", path.join(__dirname,"views"))
 app.set("view engine","pug")
 
 
+const PORT = process.env.NODE_ENV === 'production' ? 80 : 3000
 
-app.listen(config.port, () => {
+app.listen(PORT, () => {
   const debug = require("debug")("app:server");
-  debug(`Listening http://localhost:${config.port}`);
+  debug(`Listening http://localhost:${PORT}`);
 });
