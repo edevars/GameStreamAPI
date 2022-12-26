@@ -36,7 +36,7 @@ app.set("views", path.join(__dirname,"views"))
 app.set("view engine","pug")
 
 
-const PORT = process.env.NODE_ENV === 'production' ? 80 : 3000
+const PORT = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000
 
 app.listen(PORT, () => {
   const debug = require("debug")("app:server");
